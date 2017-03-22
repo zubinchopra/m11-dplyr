@@ -1,32 +1,11 @@
-# Module 9: Introduction to the DPLYR Package
+# Introduction to the DPLYR Package
 
-## Overview
+
 The DPLYR package is the preeminent tool for data wrangling in R (and perhaps, in data science more generally). It provides users with an intuitive vocabulary for executing data management and analysis tasks. Learning this package will undoubtedly make your data preparation and management process faster and easier to understand.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
 
-- [Resources](#resources)
-- [A Grammar of Data Manipulation](#a-grammar-of-data-manipulation)
-- [Data Frame Manipulation](#data-frame-manipulation)
-  - [Select](#select)
-  - [Filter](#filter)
-  - [Mutate](#mutate)
-  - [Arrange](#arrange)
-  - [Summarise](#summarise)
-  - [Distinct](#distinct)
-- [Pipe Operator](#pipe-operator)
-  - [Nested Operations](#nested-operations)
-  - [Pipe Operator Syntax](#pipe-operator-syntax)
-- [Grouped Operations](#grouped-operations)
-- [Joins](#joins)
-  - [DPLYR Joins,](#dplyr-joins)
-- [Non-standard Evaluation](#non-standard-evaluation)
+Helpful links:
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Resources
 - [Introduction to DPLYR - RStudio](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
 - [STRATA NYC Materials Download - RStudio](bit.ly/rday-nyc-strata15)
 - [Non-standard Evaluation in DPLYR - RStudio](https://cran.r-project.org/web/packages/dplyr/vignettes/nse.html)
@@ -61,7 +40,7 @@ The images in this section come from the [RStudio STRATA NYC Materials](bit.ly/r
 ### Select
 The `select` operation allows you to choose the **columns** of interest out of your data frame.
 
-![screenshot of the select function](imgs/select-ss.png)
+![screenshot of the select function](m11-imgs/select-ss.png)
 
 To execute the `select` function, simply pass in the data frame, and the names of the columns you wish to `select`:
 
@@ -73,7 +52,7 @@ storms <- select(storms, storm, pressure)
 ### Filter
 Whereas `select` allows you to focus in on **columns** of interest, the `filter` function allows you to hone in on **rows** of interest. For example:
 
-![screenshot of the filter function](imgs/filter-ss.png)
+![screenshot of the filter function](m11-imgs/filter-ss.png)
 
 ```r
 # Select storms whose `storm` column is in the vector ['Ana', 'Alberto']
@@ -91,7 +70,7 @@ filtered.rows <- filter(DATAFRAME, CONDITION-1, CONDITION-2, ..., CONDITION-N)
 ### Mutate
 The `mutate` function allows you to create additional **columns** for your data frame:
 
-![screenshot of the mutate function](imgs/mutate-ss.png)
+![screenshot of the mutate function](m11-imgs/mutate-ss.png)
 
 ```r
 # Add ratio and inverse ratio columns
@@ -120,7 +99,7 @@ more.columns <- mutate(DATAFRAME,
 ### Arrange
 The `arrange` function is what you may think of as **sorting rows**.
 
-![screenshot of the arrange function](imgs/arrange-ss.png)
+![screenshot of the arrange function](m11-imgs/arrange-ss.png)
 
 ```r
 # Arrange storms by increasing order of the `wind` column
@@ -132,7 +111,7 @@ To sort by the **reverse** order of a column, simply place a minus sign (`-`) pr
 ### Summarise
 The `summarise` function (`summarize` is also accepted) creates a summary of a **column**, computing a single value from multipe values. The `summarise` function is particularly useful for grouped operations (see below), however can be used in non-grouped operations as well, for example:
 
-![screenshot of the summarise function](imgs/summarise-ss.png)
+![screenshot of the summarise function](m11-imgs/summarise-ss.png)
 
 ```r
 # Compute the median value of the `amount` column
@@ -257,7 +236,7 @@ summary.table <- group_by(mtcars, gear) %>%
 
 This quickly and easily allows you to compare different subsets of your data, as diagrammed here:
 
-![screenshot of the groupby function](imgs/groupby-ss.png)
+![screenshot of the groupby function](m11-imgs/groupby-ss.png)
 
 ```r
 # Group the pollution data.frame by city for comparison
