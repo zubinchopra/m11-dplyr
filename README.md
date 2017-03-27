@@ -1,32 +1,11 @@
-# Module 9: Introduction to the DPLYR Package
+# Introduction to the DPLYR Package
 
-## Overview
+
 The DPLYR package is the preeminent tool for data wrangling in R (and perhaps, in data science more generally). It provides users with an intuitive vocabulary for executing data management and analysis tasks. Learning this package will undoubtedly make your data preparation and management process faster and easier to understand.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
 
-- [Resources](#resources)
-- [A Grammar of Data Manipulation](#a-grammar-of-data-manipulation)
-- [Data Frame Manipulation](#data-frame-manipulation)
-  - [Select](#select)
-  - [Filter](#filter)
-  - [Mutate](#mutate)
-  - [Arrange](#arrange)
-  - [Summarise](#summarise)
-  - [Distinct](#distinct)
-- [Pipe Operator](#pipe-operator)
-  - [Nested Operations](#nested-operations)
-  - [Pipe Operator Syntax](#pipe-operator-syntax)
-- [Grouped Operations](#grouped-operations)
-- [Joins](#joins)
-  - [DPLYR Joins,](#dplyr-joins)
-- [Non-standard Evaluation](#non-standard-evaluation)
+Helpful links:
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Resources
 - [Introduction to DPLYR - RStudio](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
 - [STRATA NYC Materials Download - RStudio](bit.ly/rday-nyc-strata15)
 - [Non-standard Evaluation in DPLYR - RStudio](https://cran.r-project.org/web/packages/dplyr/vignettes/nse.html)
@@ -48,7 +27,7 @@ The DPLYR package is the preeminent tool for data wrangling in R (and perhaps, i
 
 As you know, it's possible to implement any of these procedures with base R code -- this library just makes it easier to read and write. In the next section, we'll learn how to implement these functions to ask questions of our datasets.
 
-To practice asking questions about datasets _without_ `dplyr`, see [exercise-1](exercise-1).
+To practice asking questions about datasets _without_ `dplyr`, see [exercise-1](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-1).
 
 ## Data Frame Manipulation
 Many real-world questions about a dataset boil down to isolating specific rows/columns of the data and performing a simple comparison or computation (mean, median, etc.). Making yourself comfortable with the following operations will allow you to quickly write code to ask questions of your dataset.
@@ -61,7 +40,7 @@ The images in this section come from the [RStudio STRATA NYC Materials](bit.ly/r
 ### Select
 The `select` operation allows you to choose the **columns** of interest out of your data frame.
 
-![screenshot of the select function](imgs/select-ss.png)
+![screenshot of the select function](m11-imgs/select-ss.png)
 
 To execute the `select` function, simply pass in the data frame, and the names of the columns you wish to `select`:
 
@@ -73,7 +52,7 @@ storms <- select(storms, storm, pressure)
 ### Filter
 Whereas `select` allows you to focus in on **columns** of interest, the `filter` function allows you to hone in on **rows** of interest. For example:
 
-![screenshot of the filter function](imgs/filter-ss.png)
+![screenshot of the filter function](m11-imgs/filter-ss.png)
 
 ```r
 # Select storms whose `storm` column is in the vector ['Ana', 'Alberto']
@@ -91,7 +70,7 @@ filtered.rows <- filter(DATAFRAME, CONDITION-1, CONDITION-2, ..., CONDITION-N)
 ### Mutate
 The `mutate` function allows you to create additional **columns** for your data frame:
 
-![screenshot of the mutate function](imgs/mutate-ss.png)
+![screenshot of the mutate function](m11-imgs/mutate-ss.png)
 
 ```r
 # Add ratio and inverse ratio columns
@@ -120,7 +99,7 @@ more.columns <- mutate(DATAFRAME,
 ### Arrange
 The `arrange` function is what you may think of as **sorting rows**.
 
-![screenshot of the arrange function](imgs/arrange-ss.png)
+![screenshot of the arrange function](m11-imgs/arrange-ss.png)
 
 ```r
 # Arrange storms by increasing order of the `wind` column
@@ -132,7 +111,7 @@ To sort by the **reverse** order of a column, simply place a minus sign (`-`) pr
 ### Summarise
 The `summarise` function (`summarize` is also accepted) creates a summary of a **column**, computing a single value from multipe values. The `summarise` function is particularly useful for grouped operations (see below), however can be used in non-grouped operations as well, for example:
 
-![screenshot of the summarise function](imgs/summarise-ss.png)
+![screenshot of the summarise function](m11-imgs/summarise-ss.png)
 
 ```r
 # Compute the median value of the `amount` column
@@ -169,7 +148,7 @@ distinct.rows <- distinct(my.df, x, y)
 
 While this is a simple way to get a unique set of rows, **be careful** not to unintentionally remove rows of your data which may be important.
 
-To practice asking questions about datasets _with_ `dplyr`, see [exercise-2](exercise-2). For a more involved example, see [exercise-4](exercise-4).
+To practice asking questions about datasets _with_ `dplyr`, see [exercise-2](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-2). For a more involved example, see [exercise-4](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-4).
 
 ## Pipe Operator
 You've likely encountered a number of instances in which you want to take the results from one function and pass them into another function. Our approach thus far has often been to create temporary variables for use in our analysis. For example, if you're using the `mtcars` dataset, you may want to ask a simple question like,
@@ -240,7 +219,7 @@ best.car.name <- filter(mtcars.named, cyl == 4) %>%
 ```
 Note, the pipe operator, which is part of the `dplyr` package, works with **any function** - not just `dplyr` functions. While the syntax is odd, this will completely change (simplify) the way you write code to ask questions about your data.
 
-For an introduction to working with the pipe operator, see [exercise-3](exercise-3).
+For an introduction to working with the pipe operator, see [exercise-3](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-3).
 
 ## Grouped Operations
 The power of the `summarise` function is much clearer when we begin to **group operations by rows**. In the above example, we were only able to create a single summary measure for any given column, which didn't provide much additional information. However, computing the same summary measure (`mean`, `median`, `sum`, etc.) by _groups of rows_ allow you to ask more nuanced questions about your dataset. For example, if you were using the `mtcars` dataset, you may want to answer this question:
@@ -257,7 +236,7 @@ summary.table <- group_by(mtcars, gear) %>%
 
 This quickly and easily allows you to compare different subsets of your data, as diagrammed here:
 
-![screenshot of the groupby function](imgs/groupby-ss.png)
+![screenshot of the groupby function](m11-imgs/groupby-ss.png)
 
 ```r
 # Group the pollution data.frame by city for comparison
@@ -266,7 +245,7 @@ pollution <- group_by(pollution, city) %>%
             )
 ```
 
-For an introduction to working with grouped operations, see [exercise-5](exercise-5).
+For an introduction to working with grouped operations, see [exercise-5](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-5).
 
 ## Joins
 A common procedure in the data analysis process is bringing together data from various sources, often referred to as _joining_ or _merging_ datasets. _Joining_ can get quite tricky, and is a core part of understanding how to use relational databases. In this section, we'll introduce the concept and see some simple implementations.
@@ -328,7 +307,7 @@ As described in the [documentation](https://cran.r-project.org/web/packages/dply
 
 > `right_join`: Opposite of a `left_join`: only observations in the _second_ data frame are returned
 
-For an introduction to working with joins, see [exercise-6](exercise-6).
+For an introduction to working with joins, see [exercise-6](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-6).
 ## Non-standard Evaluation
 One of the features that makes `dplyr` such a clean and attractive way to write code is it's use of **non-standard evaluation**. Inside of each `dplyr` function, we've been using variable names **without quotes** because the package leverages **non-standard evaluation** in it's definition. _Most_ of the time, this is not an issue. However, you'll likely run into a situation in which you want to (or need to) use quoted values inside of your `dplyr` functions.
 
