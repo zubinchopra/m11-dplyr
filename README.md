@@ -27,7 +27,7 @@ Helpful links:
 
 As you know, it's possible to implement any of these procedures with base R code -- this library just makes it easier to read and write. In the next section, we'll learn how to implement these functions to ask questions of our datasets.
 
-To practice asking questions about datasets _without_ `dplyr`, see [exercise-1](exercise-1).
+To practice asking questions about datasets _without_ `dplyr`, see [exercise-1](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-1).
 
 ## Data Frame Manipulation
 Many real-world questions about a dataset boil down to isolating specific rows/columns of the data and performing a simple comparison or computation (mean, median, etc.). Making yourself comfortable with the following operations will allow you to quickly write code to ask questions of your dataset.
@@ -148,7 +148,7 @@ distinct.rows <- distinct(my.df, x, y)
 
 While this is a simple way to get a unique set of rows, **be careful** not to unintentionally remove rows of your data which may be important.
 
-To practice asking questions about datasets _with_ `dplyr`, see [exercise-2](exercise-2). For a more involved example, see [exercise-4](exercise-4).
+To practice asking questions about datasets _with_ `dplyr`, see [exercise-2](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-2). For a more involved example, see [exercise-4](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-4).
 
 ## Pipe Operator
 You've likely encountered a number of instances in which you want to take the results from one function and pass them into another function. Our approach thus far has often been to create temporary variables for use in our analysis. For example, if you're using the `mtcars` dataset, you may want to ask a simple question like,
@@ -219,7 +219,7 @@ best.car.name <- filter(mtcars.named, cyl == 4) %>%
 ```
 Note, the pipe operator, which is part of the `dplyr` package, works with **any function** - not just `dplyr` functions. While the syntax is odd, this will completely change (simplify) the way you write code to ask questions about your data.
 
-For an introduction to working with the pipe operator, see [exercise-3](exercise-3).
+For an introduction to working with the pipe operator, see [exercise-3](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-3).
 
 ## Grouped Operations
 The power of the `summarise` function is much clearer when we begin to **group operations by rows**. In the above example, we were only able to create a single summary measure for any given column, which didn't provide much additional information. However, computing the same summary measure (`mean`, `median`, `sum`, etc.) by _groups of rows_ allow you to ask more nuanced questions about your dataset. For example, if you were using the `mtcars` dataset, you may want to answer this question:
@@ -245,7 +245,7 @@ pollution <- group_by(pollution, city) %>%
             )
 ```
 
-For an introduction to working with grouped operations, see [exercise-5](exercise-5).
+For an introduction to working with grouped operations, see [exercise-5](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-5).
 
 ## Joins
 A common procedure in the data analysis process is bringing together data from various sources, often referred to as _joining_ or _merging_ datasets. _Joining_ can get quite tricky, and is a core part of understanding how to use relational databases. In this section, we'll introduce the concept and see some simple implementations.
@@ -307,7 +307,7 @@ As described in the [documentation](https://cran.r-project.org/web/packages/dply
 
 > `right_join`: Opposite of a `left_join`: only observations in the _second_ data frame are returned
 
-For an introduction to working with joins, see [exercise-6](exercise-6).
+For an introduction to working with joins, see [exercise-6](http://github.com/info201-s17/m11-dplyr/tree/master/exercise-6).
 ## Non-standard Evaluation
 One of the features that makes `dplyr` such a clean and attractive way to write code is it's use of **non-standard evaluation**. Inside of each `dplyr` function, we've been using variable names **without quotes** because the package leverages **non-standard evaluation** in it's definition. _Most_ of the time, this is not an issue. However, you'll likely run into a situation in which you want to (or need to) use quoted values inside of your `dplyr` functions.
 
