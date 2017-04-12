@@ -9,6 +9,8 @@ devtools::install_github("hadley/fueleconomy")
 
 # Require/library the fueleconomy package
 
+# Install (if you haven't already) and load the `dplyr`package
+
 
 # You should have have access to the `vehicles` data.frame
 
